@@ -44,7 +44,8 @@ router.get('/apps', (req, res, next) => {
   
   
   MyApp
-    .find()    
+    .find()
+    .select('-_id')
     .then( apps => {
       res.send(apps);
     })
