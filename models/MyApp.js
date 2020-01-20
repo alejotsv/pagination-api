@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = moongose.Schema;
+const Schema = mongoose.Schema;
 
 const myAppSchema = new Schema ({
   id: {
@@ -13,6 +13,6 @@ const myAppSchema = new Schema ({
 
 });
 
-const MyApp = moongose.model('MyApp', myAppSchema);
+const MyApp = mongoose.model('MyApp', myAppSchema);
 
 module.exports = MyApp;
