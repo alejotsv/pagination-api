@@ -30,9 +30,17 @@ router.get('/apps', (req, res, next) => {
   }
 
   let max;
+
+  // Verify if the field 'max' exists and set value or default to variable
+  if (!req.body.range.max) {
+    max = 50;
+  } else {
+    max = req.body.range.max;
+  }
+
   let order; 
   console.log(req.body);
-  console.log(`this is end: ${end}`);
+  console.log(`this is max: ${max}`);
   
   
   MyApp
