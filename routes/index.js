@@ -47,6 +47,7 @@ router.get('/apps', (req, res, next) => {
     .find()
     .select('-_id')
     .then( apps => {
+      // TODO: create an array of pages according to the specifications and return that
       res.send(apps);
     })
     .catch( err => next(err) )
