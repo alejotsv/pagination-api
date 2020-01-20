@@ -21,12 +21,20 @@ router.get('/apps', (req, res, next) => {
   } else {
     start = req.body.range.start;
   }
-
+  
   let end;
+
+   // Verify if the field 'end' exists and set value or default to variable
+   if (!req.body.range.start) {
+    end = undefined;
+  } else {
+    end = req.body.range.end;
+  }
+
   let max;
   let order; 
   console.log(req.body);
-  console.log(`this is start: ${start}`);
+  console.log(`this is start: ${end}`);
   
   
   MyApp
