@@ -1,4 +1,4 @@
-## Pagination API
+# Pagination API
 
 Pagination is a technique frequently seen in HTTP API's to make working with large data sets more manageable.
 
@@ -15,7 +15,7 @@ This tool was built according to the following parameters:
 
 When the endpoint is requested with a "range", it should modify its response to appropriately include only the items bounded by that range request.
 
-# Implementation
+## Implementation
 
 To implement this solution, variables for each paramater were set to a) verify their presence in the request and b) set a default value when applicable. After checking the parameters a Promise-based call to the database is made, the id of each document removed from the results. The results are then subsequently delimited according to the parameters in the request.
 
