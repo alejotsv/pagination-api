@@ -67,8 +67,7 @@ router.get('/apps', (req, res, next) => {
   } else {
     order = 'desc';
   }  
-  
-  
+    
   MyApp
     // Find all documents in collection
     .find()
@@ -78,10 +77,9 @@ router.get('/apps', (req, res, next) => {
     .limit(limit)
     // Skip documents prior to the start point
     .skip(start-1)
-    // Sort according to the order value
-    // .sort( { id: order })
     .then( apps => {
       // Return search results  
+      // Sort according to the order value
       if(order === 'asc'){
         res.send(apps);
       } else {
