@@ -2,7 +2,7 @@
 
 Pagination is a technique frequently seen in HTTP API's to make working with large data sets more manageable.
 
-This API was designed using Javascript, MongoDB, Mongoose, Express.js, and Node.js. It has been deployed and is ready to use at https://md-my-apps.herokuapp.com/apps.
+This API was designed using Javascript, MongoDB, Mongoose, Express.js, and Node.js. The endpoint for this API has been deployed and is ready to use from https://md-my-apps.herokuapp.com/apps.
 
 This tool was built according to the following parameters:
 
