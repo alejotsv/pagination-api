@@ -24,17 +24,17 @@ router.get('/apps', (req, res, next) => {
     // remove 'my-app-' from app name and convert to number
     start = Number(req.body.range.start.split('-').pop());
   }
-
-  console.log('this is start: ' + start);
+  
   
   let end;
 
   // Verify if the field 'end' exists and set value or default to variable
   if (req.body.range.end) {
    if (by==='id'){
+    //  Get limit by substracting start point and adding 1
      end = req.body.range.end - start + 1;
    } else if (by==='name'){
-     // remove 'my-app-' from app name and convert to number
+     // Remove 'my-app-' from app name, convert to number, and get limit by substracting start point and adding 1
      end = Number(req.body.range.end.split('-').pop()) - start + 1;
    }
   }
@@ -43,8 +43,9 @@ router.get('/apps', (req, res, next) => {
 
   // Verify if the field 'max' exists and set value or default to variable
   if (!req.body.range.max) {
+    // Set default max
     max = 50;
-  } else {
+  } else {    
     max = req.body.range.max;
   }
 
@@ -52,22 +53,35 @@ router.get('/apps', (req, res, next) => {
 
   // Verify if limit will match end or max
   if (!req.body.range.end || end > max) {
+    // If end point goes beyond max, max gets precedence
     limit = max;
   } else {
     limit = end;
   }
 
-  let order; 
-  console.log(req.body);   
+  let order;
+
+  // Verify if the field 'order' exists and set value or default to variable
+  if (req.body.range.order !== 'desc') {
+    order = 'asc';
+  } else {
+    order = 'desc';
+  }  
   
   
   MyApp
+    // Find all documents in collection
     .find()
+    // Exclude the object id
     .select('-_id')
+    // Limit the number of results to the max page size or the end point
     .limit(limit)
+    // Skip documents prior to the start point
     .skip(start-1)
+    // Sort according to the order value
+    .sort( { id: order })
     .then( apps => {
-      // TODO: create an array of pages according to the specifications and return that      
+      // Return search results      
       res.send(apps);
     })
     .catch( err => next(err) )
