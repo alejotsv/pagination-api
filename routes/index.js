@@ -89,11 +89,12 @@ router.get('/apps', (req, res, next) => {
 
 // PUT route created to add new apps
 router.put('/apps-create', (req, res, next) => {
-  const { id, name } = req.body;
-  MyApp
-    .create( {id, name} )
-    .then( newApp => {
-      res.send( newApp );
+  const arr = req.body;
+  console.log(arr);
+  MyApp.collection
+    .insertMany( arr, {ordered: true} )
+    .then( newApps => {
+      res.send( newApps );
     })
     .catch( err => next(err))
 });
@@ -101,3 +102,4 @@ router.put('/apps-create', (req, res, next) => {
 
 
 module.exports = router;
+
