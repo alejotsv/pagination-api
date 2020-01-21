@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const MyApp = require('../models/MyApp');
 
-/* GET home page */
+/* GET Apps */
 router.get('/apps', (req, res, next) => {  
   let by;
 
@@ -39,7 +39,7 @@ router.get('/apps', (req, res, next) => {
    }
   }
 
-  let max;  
+  let max;
 
   // Verify if the field 'max' exists and set value or default to variable
   if (!req.body.range.max) {
