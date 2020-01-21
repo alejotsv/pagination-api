@@ -18,9 +18,13 @@ router.get('/apps', (req, res, next) => {
   // Verify if the field 'start' exists and set value or default to variable
   if (!req.body.range.start) {
     start = 0;
-  } else {
+  } else if (by==='id'){
     start = req.body.range.start;
+  } else if (by==='name') {
+    start = Number(req.body.range.start.split('-').pop());
   }
+
+  console.log('this is start: ' + start);
   
   let end;  
 
@@ -46,8 +50,9 @@ router.get('/apps', (req, res, next) => {
   MyApp
     .find()
     .select('-_id')
+    .skip(start-1)
     .then( apps => {
-      // TODO: create an array of pages according to the specifications and return that
+      // TODO: create an array of pages according to the specifications and return that      
       res.send(apps);
     })
     .catch( err => next(err) )
