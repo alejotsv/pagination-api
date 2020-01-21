@@ -79,10 +79,14 @@ router.get('/apps', (req, res, next) => {
     // Skip documents prior to the start point
     .skip(start-1)
     // Sort according to the order value
-    .sort( { id: order })
+    // .sort( { id: order })
     .then( apps => {
-      // Return search results      
-      res.send(apps);
+      // Return search results  
+      if(order === 'asc'){
+        res.send(apps);
+      } else {
+        res.send(apps.reverse());
+      }
     })
     .catch( err => next(err) )
 });
