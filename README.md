@@ -23,5 +23,13 @@ Finally, the results are sorted ascendingly or descendingly in the response, acc
 
 The database has been populated with 600 documents for testing purposes.
 
+## Test
+
+It is recommended to test this API endpoint with a tool such as Postman. A GET request should be made, adding a JSON object as raw parameters. For instance:
+
+{ "range": { "by": "id", "start": 20, "end": 200,  "max": 60 } }
+
+
+
 
 
